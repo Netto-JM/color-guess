@@ -1,8 +1,8 @@
 // localStorage related code in comments
 
-const colorBalls = document.getElementsByClassName('ball');
-const answerText = document.getElementById('answer');
-const colorToGuess = document.getElementById('rgb-color');
+const colorBallsEl = document.getElementsByClassName('ball');
+const answerTextEl = document.getElementById('answer');
+const colorToGuessEl = document.getElementById('rgb-color');
 
 function generateRandomColor() {
   const colorValues = [];
@@ -18,13 +18,13 @@ function decideGuessingColor(randomColors) {
   const ballsCount = randomColors.length;
   const colorIndex = Math.floor(Math.random() * ballsCount);
   const guessingColor = randomColors[colorIndex];
-  colorToGuess.textContent = guessingColor;
+  colorToGuessEl.textContent = guessingColor;
 }
 
 function addRandomColors() {
   const randomColors = [];
-  for (let index = 0; index < colorBalls.length; index += 1) {
-    const ball = colorBalls[index];
+  for (let index = 0; index < colorBallsEl.length; index += 1) {
+    const ball = colorBallsEl[index];
     const randomColor = generateRandomColor();
     ball.style.backgroundColor = randomColor;
     randomColors.push(randomColor);
@@ -34,7 +34,14 @@ function addRandomColors() {
 }
 
 function checkAnswer(clickedElement) {
-  console.log(clickedElement);
+  const clickedColor = clickedElement.style.backgroundColor;
+  const colorToGuess = colorToGuessEl.textContent;
+  const isCorrectAnswer = clickedColor === colorToGuess;
+  if (isCorrectAnswer) {
+    answerTextEl.textContent = 'Acertou!';
+    return;
+  }
+  answerTextEl.textContent = 'Errou! Tente novamente!';
 }
 
 function clickHandler(event) {
