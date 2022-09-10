@@ -1,0 +1,64 @@
+/* Da linha 5 a 11, utilizando "Universal Box Sizing with Inheritance" para manter
+o tamanho dos itens de acordo com os valores pré-estabelecidos
+fonte: https://css-tricks.com/box-sizing/ */
+
+html {
+  box-sizing: border-box;
+}
+
+* , *:before , *:after {
+  box-sizing: inherit;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#title , #rgb-color {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#color-palette {
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  height: 7rem;
+}
+
+.ball {
+  border: 1px solid black;
+  width: 5.5rem;
+  height: 5.5rem;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.ball:nth-of-type( 1 ) {
+  background-color: black;
+}
+
+.ball:nth-of-type( 2 ) {
+  background-color: red;
+}
+
+.ball:nth-of-type( 3 ) {
+  background-color: blue;
+}
+
+.ball:nth-of-type( 4 ) {
+  background-color: yellow;
+}
+
+.ball:nth-of-type( 5 ) {
+  background-color: violet;
+}
+
+.ball:nth-of-type( 6 ) {
+  background-color: brown;
+}
