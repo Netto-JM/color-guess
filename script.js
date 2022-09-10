@@ -14,7 +14,7 @@ function generateRandomColor() {
 
 function addRandomColors() {
   // const randomColors = [];
-  for (let index = 1; index < colorBalls.length; index += 1) {
+  for (let index = 0; index < colorBalls.length; index += 1) {
     const ball = colorBalls[index];
     const randomColor = generateRandomColor();
     ball.style.backgroundColor = randomColor;
