@@ -37,11 +37,8 @@ function checkAnswer(clickedElement) {
   const clickedColor = clickedElement.style.backgroundColor;
   const colorToGuess = colorToGuessEl.textContent;
   const isCorrectAnswer = clickedColor === colorToGuess;
-  if (isCorrectAnswer) {
-    answerTextEl.textContent = 'Acertou!';
-    return;
-  }
-  answerTextEl.textContent = 'Errou! Tente novamente!';
+  const veredict = isCorrectAnswer ? 'Acertou!' : 'Errou! Tente novamente!';
+  answerTextEl.textContent = veredict;
 }
 
 function clickHandler(event) {
