@@ -19,7 +19,6 @@ function decideGuessingColor(randomColors) {
   const colorIndex = Math.floor(Math.random() * ballsCount);
   const guessingColor = randomColors[colorIndex];
   colorToGuess.textContent = guessingColor;
-  console.log(guessingColor);
 }
 
 function addRandomColors() {
@@ -28,11 +27,22 @@ function addRandomColors() {
     const ball = colorBalls[index];
     const randomColor = generateRandomColor();
     ball.style.backgroundColor = randomColor;
-    console.log(randomColor);
     randomColors.push(randomColor);
   }
   decideGuessingColor(randomColors);
   // localStorage.setItem('colorPalette', JSON.stringify(randomColors));
 }
 
+function checkAnswer(clickedElement) {
+  console.log(clickedElement);
+}
+
+function clickHandler(event) {
+  const clickedElement = event.target;
+  if (clickedElement.classList.contains('ball')) {
+    checkAnswer(clickedElement);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', addRandomColors);
+document.addEventListener('click', clickHandler);
