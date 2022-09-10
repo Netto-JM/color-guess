@@ -1,3 +1,7 @@
+// localStorage related code in comments
+
+const colorBalls = document.getElementsByClassName('ball');
+
 function generateRandomColor() {
   const colorValues = [];
   for (let index = 0; index < 3; index += 1) {
@@ -8,4 +12,15 @@ function generateRandomColor() {
   return color;
 }
 
-console.log(generateRandomColor());
+function addRandomColors() {
+  // const randomColors = [];
+  for (let index = 1; index < colorBalls.length; index += 1) {
+    const ball = colorBalls[index];
+    const randomColor = generateRandomColor();
+    ball.style.backgroundColor = randomColor;
+    // randomColors.push(randomColor);
+  }
+  // localStorage.setItem('colorPalette', JSON.stringify(randomColors));
+}
+
+document.addEventListener('DOMContentLoaded', addRandomColors);
