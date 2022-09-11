@@ -9,10 +9,10 @@
 </head>
 <body>
   <header>
-    <h1 id="title">Guess the color!</h1>
+    <h1 id="title">Adivinhe a cor!</h1>
   </header>
   <main>
-    <p id="rgb-color">(168, 34, 1)</p>
+    <p id="rgb-color"></p>
     <div class="centered">
       <div id="color-palette">
         <div class="ball"></div>
@@ -24,6 +24,11 @@
       </div>
     </div>
     <p id="answer" class="centered">Escolha uma cor</p>
+    <div class="centered">
+      <input type="number" min="2" max="9" id="number-of-balls">
+      <button id="generate-balls">Mudar Dificuldade</button>
+      <button id="reset-game">Resetar o jogo/cores</button>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>
