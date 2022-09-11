@@ -3,6 +3,7 @@
 const colorBallsEl = document.getElementsByClassName('ball');
 const answerTextEl = document.getElementById('answer');
 const colorToGuessEl = document.getElementById('rgb-color');
+const resetGameButtonEl = document.getElementById('reset-game');
 
 function generateRandomColor() {
   const colorValues = [];
@@ -48,5 +49,11 @@ function clickHandler(event) {
   }
 }
 
+function resetGame() {
+  addRandomColors();
+  answerTextEl.textContent = 'Escolha uma cor';
+}
+
 document.addEventListener('DOMContentLoaded', addRandomColors);
 document.addEventListener('click', clickHandler);
+resetGameButtonEl.addEventListener('click', resetGame);
