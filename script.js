@@ -1,9 +1,8 @@
-// localStorage related code in comments
-
 const colorBallsEl = document.getElementsByClassName('ball');
 const answerTextEl = document.getElementById('answer');
 const colorToGuessEl = document.getElementById('rgb-color');
 const resetGameButtonEl = document.getElementById('reset-game');
+const resetScoreButtonEl = document.getElementById('reset-score');
 const scoreEl = document.getElementById('score');
 
 function generateRandomColor() {
@@ -32,14 +31,12 @@ function addRandomColors() {
     randomColors.push(randomColor);
   }
   colorToGuessEl.textContent = decideGuessingColor(randomColors);
-  // localStorage.setItem('colorPalette', JSON.stringify(randomColors));
 }
 
 function updateScore(veredict) {
   const previousScore = Number(scoreEl.textContent);
-  if (veredict === 'Acertou!') {
-    scoreEl.textContent = previousScore + 3;
-  }
+  scoreEl.textContent = veredict === 'Acertou!' ? previousScore + 3 : previousScore - 1;
+  addRandomColors();
 }
 
 function checkAnswer(clickedElement) {
@@ -66,3 +63,4 @@ function resetGame() {
 document.addEventListener('DOMContentLoaded', addRandomColors);
 document.addEventListener('click', clickHandler);
 resetGameButtonEl.addEventListener('click', resetGame);
+resetScoreButtonEl.addEventListener('click', () => { scoreEl.textContent = 0; });
