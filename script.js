@@ -69,10 +69,21 @@ function removeBalls(quantity) {
   }
 }
 
+function addBalls(quantity) {
+  console.log(quantity);
+}
+
 function generateBalls() {
-  const numberOfBalls = Number(numberOfBallsEl.value);
-  console.log(numberOfBalls);
-  removeBalls(numberOfBalls);
+  const requiredNumberOfBalls = Number(numberOfBallsEl.value);
+  const previousNumberOfBalls = colorBallsEl.length;
+  const difference = requiredNumberOfBalls - previousNumberOfBalls;
+  if (difference === 0) return;
+  if (difference < 0) {
+    const quantityToRemove = Math.abs(difference);
+    removeBalls(quantityToRemove);
+  } else {
+    addBalls(difference);
+  }
   resetGame();
   resetScore();
 }
