@@ -82,12 +82,8 @@ function generateBalls() {
   const previousNumberOfBalls = colorBallsEl.length;
   const difference = requiredNumberOfBalls - previousNumberOfBalls;
   if (difference === 0) return;
-  if (difference < 0) {
-    const quantityToRemove = Math.abs(difference);
-    removeBalls(quantityToRemove);
-  } else {
-    addBalls(difference);
-  }
+  // eslint-disable-next-line no-unused-expressions
+  (difference < 0) ? removeBalls(Math.abs(difference)) : addBalls(difference);
   resetGame();
   resetScore();
 }
