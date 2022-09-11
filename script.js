@@ -1,9 +1,12 @@
+const colorPaletteEl = document.getElementById('color-palette');
 const colorBallsEl = document.getElementsByClassName('ball');
 const answerTextEl = document.getElementById('answer');
 const colorToGuessEl = document.getElementById('rgb-color');
 const resetGameButtonEl = document.getElementById('reset-game');
 const resetScoreButtonEl = document.getElementById('reset-score');
 const scoreEl = document.getElementById('score');
+const generateBallsButtonEl = document.getElementById('generate-balls');
+const numberOfBallsEl = document.getElementById('number-of-balls');
 
 function generateRandomColor() {
   const colorValues = [];
@@ -39,7 +42,10 @@ function updateScore(veredict) {
   addRandomColors();
 }
 
-function checkAnswer(clickedElement) {
+function checkAnswer(event) {
+  const clickedElement = event.target.closest('.ball');
+  const clickedWhiteSpace = !clickedElement;
+  if (clickedWhiteSpace) return;
   const clickedColor = clickedElement.style.backgroundColor;
   const colorToGuess = colorToGuessEl.textContent;
   const isCorrectAnswer = clickedColor === colorToGuess;
@@ -48,19 +54,31 @@ function checkAnswer(clickedElement) {
   updateScore(veredict);
 }
 
-function clickHandler(event) {
-  const clickedElement = event.target;
-  if (clickedElement.classList.contains('ball')) {
-    checkAnswer(clickedElement);
-  }
-}
-
 function resetGame() {
   addRandomColors();
   answerTextEl.textContent = 'Escolha uma cor';
 }
 
+function resetScore() {
+  scoreEl.textContent = 0;
+}
+
+function removeBalls(quantity) {
+  for (let index = 0; index < quantity; index += 1) {
+    colorPaletteEl.removeChild(colorPaletteEl.firstElementChild);
+  }
+}
+
+function generateBalls() {
+  const numberOfBalls = Number(numberOfBallsEl.value);
+  console.log(numberOfBalls);
+  removeBalls(numberOfBalls);
+  resetGame();
+  resetScore();
+}
+
 document.addEventListener('DOMContentLoaded', addRandomColors);
-document.addEventListener('click', clickHandler);
 resetGameButtonEl.addEventListener('click', resetGame);
-resetScoreButtonEl.addEventListener('click', () => { scoreEl.textContent = 0; });
+resetScoreButtonEl.addEventListener('click', resetScore);
+generateBallsButtonEl.addEventListener('click', generateBalls);
+colorPaletteEl.addEventListener('click', checkAnswer);
