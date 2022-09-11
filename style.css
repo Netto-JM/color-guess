@@ -17,9 +17,13 @@ html {
   margin-bottom: 1rem;
 }
 
-#title , #rgb-color {
+#title , #rgb-color , #score-container {
   font-size: 3rem;
   text-align: center;
+}
+
+#rgb-color , #score-container {
+  margin: 3rem;
 }
 
 #color-palette {

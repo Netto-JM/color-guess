@@ -4,6 +4,7 @@ const colorBallsEl = document.getElementsByClassName('ball');
 const answerTextEl = document.getElementById('answer');
 const colorToGuessEl = document.getElementById('rgb-color');
 const resetGameButtonEl = document.getElementById('reset-game');
+const scoreEl = document.getElementById('score');
 
 function generateRandomColor() {
   const colorValues = [];
@@ -19,7 +20,7 @@ function decideGuessingColor(randomColors) {
   const ballsCount = randomColors.length;
   const colorIndex = Math.floor(Math.random() * ballsCount);
   const guessingColor = randomColors[colorIndex];
-  colorToGuessEl.textContent = guessingColor;
+  return guessingColor;
 }
 
 function addRandomColors() {
@@ -30,8 +31,15 @@ function addRandomColors() {
     ball.style.backgroundColor = randomColor;
     randomColors.push(randomColor);
   }
-  decideGuessingColor(randomColors);
+  colorToGuessEl.textContent = decideGuessingColor(randomColors);
   // localStorage.setItem('colorPalette', JSON.stringify(randomColors));
+}
+
+function updateScore(veredict) {
+  const previousScore = Number(scoreEl.textContent);
+  if (veredict === 'Acertou!') {
+    scoreEl.textContent = previousScore + 3;
+  }
 }
 
 function checkAnswer(clickedElement) {
@@ -40,6 +48,7 @@ function checkAnswer(clickedElement) {
   const isCorrectAnswer = clickedColor === colorToGuess;
   const veredict = isCorrectAnswer ? 'Acertou!' : 'Errou! Tente novamente!';
   answerTextEl.textContent = veredict;
+  updateScore(veredict);
 }
 
 function clickHandler(event) {
