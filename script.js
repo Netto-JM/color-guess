@@ -70,7 +70,11 @@ function removeBalls(quantity) {
 }
 
 function addBalls(quantity) {
-  console.log(quantity);
+  for (let index = 0; index < quantity; index += 1) {
+    const newBall = document.createElement('div');
+    newBall.classList.add('ball');
+    colorPaletteEl.appendChild(newBall);
+  }
 }
 
 function generateBalls() {
